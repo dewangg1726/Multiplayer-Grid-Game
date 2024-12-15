@@ -1,5 +1,5 @@
 import React from 'react';
-import './Grid.css'; // Import the CSS file
+import './Grid.css'; 
 
 const Grid = ({ grid, onBlockClick }) => {
     return (

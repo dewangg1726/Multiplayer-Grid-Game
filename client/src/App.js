@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
 import Grid from './components/Grid';
 import PlayerCount from './components/PlayerCount';
-import './App.css'; // Import the global theme and styles
+import './App.css'; 
 
-const socket = io('http://localhost:5000');
+const socket = io('https://multiplayer-grid-game.onrender.com');
 
 const App = () => {
     const [grid, setGrid] = useState([]);
@@ -12,19 +12,19 @@ const App = () => {
     const [canUpdate, setCanUpdate] = useState(true);
     const [timer, setTimer] = useState(0);
     const [history, setHistory] = useState([]);
-    const [revertedGrid, setRevertedGrid] = useState(null); // Store reverted grid state
+    const [revertedGrid, setRevertedGrid] = useState(null); 
 
     useEffect(() => {
-        // Fetch initial grid and history
-        fetch('http://localhost:5000/api/grid')
+        
+        fetch('https://multiplayer-grid-game.onrender.com/api/grid')
             .then((res) => res.json())
             .then(setGrid);
 
-        fetch('http://localhost:5000/api/history')
+        fetch('https://multiplayer-grid-game.onrender.com/api/history')
             .then((res) => res.json())
             .then(setHistory);
 
-        // Listen for grid and history updates
+        
         socket.on('update-grid', ({ x, y, char }) => {
             setGrid((prevGrid) => {
                 const newGrid = [...prevGrid];
@@ -69,7 +69,7 @@ const App = () => {
     };
 
     const revertToUpdate = (index) => {
-        // Generate grid up to a specific point in history
+        
         const newGrid = Array(10).fill(null).map(() => Array(10).fill(null));
 
         for (let i = 0; i <= index; i++) {
@@ -79,7 +79,7 @@ const App = () => {
             });
         }
 
-        setRevertedGrid(newGrid); // Store the reverted state
+        setRevertedGrid(newGrid); 
     };
 
     return (

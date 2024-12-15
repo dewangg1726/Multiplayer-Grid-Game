@@ -7,7 +7,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: "https://bucolic-khapse-2e1648.netlify.app",
         methods: ["GET", "POST"],
     },
 });
@@ -67,5 +67,5 @@ io.on('connection', (socket) => {
 
 
 server.listen(5000, () => {
-    console.log('Backend running on http://localhost:5000');
+    console.log('Backend running on https://multiplayer-grid-game.onrender.com');
 });
